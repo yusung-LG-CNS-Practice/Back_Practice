@@ -1,13 +1,10 @@
-#macOS
+# macOS
 .DS_Store
 
-# Java
+# Java 컴파일 결과
 *.class
 bin/
 out/
-
-# VS Code
-.vscode/
 
 # IntelliJ
 .idea/
