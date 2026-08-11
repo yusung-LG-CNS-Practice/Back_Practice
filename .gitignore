@@ -1,0 +1,16 @@
+.DS_Store
+
+# Java
+*.class
+bin/
+out/
+
+# VS Code
+.vscode/
+
+# IntelliJ
+.idea/
+*.iml
+
+# Logs
+*.log
