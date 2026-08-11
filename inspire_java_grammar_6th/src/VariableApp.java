@@ -6,7 +6,7 @@ public class VariableApp {
         - 문자형(char)
         - 논리형(bolean)
         - 문자열(String)
-    - 참조타입(주소값을 담는 그릇)
+    - 참조타입(주소값을 담는 그릇) : class, 주소값을 담기 위해서는 객체 생성(new)
         - 기본타입이 아닌 모든 것
     
     선언문법
@@ -31,5 +31,19 @@ public class VariableApp {
         System.out.println("height \t" + height);
         System.out.println("gender \t" + gender);
         System.out.println("isMarriage \t" + isMarriage);
+
+        // Wrapper Class - Boxing, UnBoxing
+        // primitive type, reference type
+        Integer ii = 10;
+        System.out.println(10 + ii);
+
+        // casting(숫자에서만 가능)
+        // byte -> short -> int -> long -> float -> double
+        //          char -> int
+        // (byte)integer
+        byte x = 10, y = 10, sum = 0;
+        // sum = x + y;
+        sum = (byte)(x + y);
+        System.out.println(sum);
     }
 }

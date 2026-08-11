@@ -1,0 +1,19 @@
+import features.blogs.dto.BlogRequestDTO;
+
+public class BlogApp {
+    public static void main(String[] args) {
+        System.out.println(">>>> new 연산자를 이용한 객체생성");
+        // BlogRequestDTO request = new BlogRequestDTO();
+        // BlogRequestDTO request = new BlogRequestDTO(1, "title", "content", "email")
+
+        System.out.println(">>>> Builder 이용한 객체생성");
+        BlogRequestDTO request = BlogRequestDTO.builder()
+                .title("자바 첫날입니다.")
+                .content("재미있다.")
+                .email("yusung052077@gmail.com")
+                .build();
+
+        request.setTitle("조기퇴근");
+        System.out.println("title : " + request.getTitle());
+    }
+}
