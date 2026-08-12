@@ -29,6 +29,8 @@ public class OperatorApp {
 
         // instance.printGugudan(2);
 
-        instance.gugudan();
+        // instance.gugudan();
+
+        instance.popStr("inspire lgcns camp 6th");
     }
 }

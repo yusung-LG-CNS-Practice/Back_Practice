@@ -296,4 +296,19 @@ public class OperatorDemo {
             // }
         }
     }
+
+    // Q4번) 문자열도 반복구문 이용이 가능할까?
+    public void popStr(String str){
+        System.out.println("debug >>>> params : " + str);
+        System.out.println("debug >>>> length : " + str.length());
+        // System.out.println(str.charAt(1));
+
+        // 리버스
+        for(int idx = str.length() - 1; idx >= 0; idx--){
+            System.out.print(str.charAt(idx));
+        }
+        // for(초기식; 조건식; 증감식){
+
+        // }
+    }
 }
