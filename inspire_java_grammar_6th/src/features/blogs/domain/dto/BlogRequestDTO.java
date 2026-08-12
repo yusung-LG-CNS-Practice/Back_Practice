@@ -1,4 +1,4 @@
-package features.blogs.dto;
+package features.blogs.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

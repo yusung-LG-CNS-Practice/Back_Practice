@@ -1,4 +1,4 @@
-import features.blogs.dto.BlogRequestDTO;
+import features.blogs.domain.dto.BlogRequestDTO;
 
 public class BlogApp {
     public static void main(String[] args) {
