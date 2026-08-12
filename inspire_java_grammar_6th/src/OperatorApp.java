@@ -5,6 +5,7 @@ import features.operator.OperatorDemo;
 public class OperatorApp {
 
     public static void main(String[] args) {
+        
         OperatorDemo instance = new OperatorDemo();
         // instance.operator();
         // BlogResponseDTO response = instance.register("오늘도 무사히", "앗", "yusung052077@gmail.com");
@@ -20,7 +21,14 @@ public class OperatorApp {
         // String result = instance.woodMan(3);
         // System.out.println(result);
 
-        int result = instance.sumNumber(1, 100);
-        System.out.println(result);
+        // int result = instance.sumNumber(1, 100);
+        // System.out.println(result);
+
+        // int result= OperatorDemo.sumRandom();
+        // System.out.println(result);
+
+        // instance.printGugudan(2);
+
+        instance.gugudan();
     }
 }
