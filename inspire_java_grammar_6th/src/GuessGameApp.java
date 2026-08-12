@@ -5,14 +5,14 @@ import features.game.GuessGame;
 public class GuessGameApp {
 
     public static void main(String[] args) {
-        
+
         GuessGame game = new GuessGame();
         String forResult = game.gameFor();
-        String whileResult = game.gameWhile();
-        String dowhileResult = game.gameDoWhile();
+        // String whileResult = game.gameWhile();
+        // String dowhileResult = game.gameDoWhile();
         System.out.println(forResult);
-        System.out.println(whileResult);
-        System.out.println(dowhileResult);
+        // System.out.println(whileResult);
+        // System.out.println(dowhileResult);
 
         // 테스트 케이스
         // Scanner scan = new Scanner(System.in);
