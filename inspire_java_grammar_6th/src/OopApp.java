@@ -55,8 +55,8 @@ public class OopApp {
 
         System.out.println();
 
-        for (int idx = 0; idx < ary.length; idx++) {
-            PersonDTO per = ary[idx];
+        // for (int idx = 0; idx < ary.length; idx++) {
+        //     PersonDTO per = ary[idx];
             // if(per instanceof TeacherDTO){
 
             // }else if(per instanceof ManagerDTO){
@@ -65,15 +65,20 @@ public class OopApp {
 
             // }
 
-            if (per instanceof TeacherDTO) {
-            System.out.println(((TeacherDTO) per).getSubject());
-            }
-            if (per instanceof ManagerDTO) {
-            System.out.println(((ManagerDTO) per).getDept());
-            }
-            if (per instanceof StudentDTO) {
-            System.out.println(((StudentDTO) per).getSsn());
-            }
+            // if (per instanceof TeacherDTO) {
+            // System.out.println(((TeacherDTO) per).getSubject());
+            // }
+            // if (per instanceof ManagerDTO) {
+            // System.out.println(((ManagerDTO) per).getDept());
+            // }
+            // if (per instanceof StudentDTO) {
+            // System.out.println(((StudentDTO) per).getSsn());
+            // }
+        // }
+
+        for(int idx = 0; idx < ary.length; idx++){
+            PersonDTO per = ary[idx];
+            System.out.println(per.personInfo());
         }
     }
 }
