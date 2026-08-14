@@ -50,7 +50,7 @@ public class OopService {
     }
 
     //
-    public void setAry(PersonDTO per) {
+    private void setAry(PersonDTO per) {
         ary[idx++] = per;
     }
 
@@ -103,25 +103,39 @@ public class OopService {
     // 내가 한 퀴즈 코드
     // public PersonDTO findPerson(String name) {
 
-    //     for (PersonDTO person : ary) {
+    // for (PersonDTO person : ary) {
 
-    //         // 배열의 빈 공간을 만나면 탐색 종료
-    //         if (person == null) {
-    //             break;
-    //         }
+    // // 배열의 빈 공간을 만나면 탐색 종료
+    // if (person == null) {
+    // break;
+    // }
 
-    //         // 전달받은 이름과 배열에 저장된 사람의 이름 비교
-    //         if (person.getName().equals(name)) {
-    //             return person;
-    //         }
-    //     }
+    // // 전달받은 이름과 배열에 저장된 사람의 이름 비교
+    // if (person.getName().equals(name)) {
+    // return person;
+    // }
+    // }
 
-    //     // 일치하는 사람이 없으면 null 반환
-    //     return null;
+    // // 일치하는 사람이 없으면 null 반환
+    // return null;
     // }
 
     // 강사님이 한 퀴즈 코드
-    public PersonDTO findPerson(String name){
-        return null;
+    public PersonDTO findPerson(String name) {
+
+        PersonDTO result = null;
+
+        for (PersonDTO person : ary) {
+            if (person == null) {
+                break;
+            } else {
+                if (person.getName().equals(name)) {
+                    // result = person;
+                    // break;
+                    return person;
+                }
+            }
+        }
+        return result;
     }
 }

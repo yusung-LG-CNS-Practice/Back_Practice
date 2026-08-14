@@ -110,7 +110,7 @@ public class OopApp {
 
         System.out.println();
         System.out.println("debug >>>> findPerson");
-        PersonDTO find = service.findPerson("임정섭");
+        PersonDTO find = service.findPerson("박수진");
         if(find != null){
             System.out.println(find.personInfo());
         }else{
