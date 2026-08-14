@@ -4,6 +4,8 @@ import features.oop.tv.LgTV;
 import features.oop.tv.SamsungTV;
 import features.oop.tv.TV;
 
+// 8월 14일 실습 코드
+
 public class BeanFactory {
 
     private static BeanFactory instance;
