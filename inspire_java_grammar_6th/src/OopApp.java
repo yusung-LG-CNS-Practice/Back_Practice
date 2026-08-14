@@ -1,7 +1,9 @@
+import features.oop.service.OopService;
 import features.oop.sub.ManagerDTO;
 import features.oop.sub.StudentDTO;
 import features.oop.sub.TeacherDTO;
 import features.oop.sup.PersonDTO;
+import features.oop.util.Flag;
 
 public class OopApp {
 
@@ -56,29 +58,63 @@ public class OopApp {
         System.out.println();
 
         // for (int idx = 0; idx < ary.length; idx++) {
-        //     PersonDTO per = ary[idx];
-            // if(per instanceof TeacherDTO){
+        // PersonDTO per = ary[idx];
+        // if(per instanceof TeacherDTO){
 
-            // }else if(per instanceof ManagerDTO){
+        // }else if(per instanceof ManagerDTO){
 
-            // }else{
+        // }else{
 
-            // }
-
-            // if (per instanceof TeacherDTO) {
-            // System.out.println(((TeacherDTO) per).getSubject());
-            // }
-            // if (per instanceof ManagerDTO) {
-            // System.out.println(((ManagerDTO) per).getDept());
-            // }
-            // if (per instanceof StudentDTO) {
-            // System.out.println(((StudentDTO) per).getSsn());
-            // }
         // }
 
-        for(int idx = 0; idx < ary.length; idx++){
+        // if (per instanceof TeacherDTO) {
+        // System.out.println(((TeacherDTO) per).getSubject());
+        // }
+        // if (per instanceof ManagerDTO) {
+        // System.out.println(((ManagerDTO) per).getDept());
+        // }
+        // if (per instanceof StudentDTO) {
+        // System.out.println(((StudentDTO) per).getSsn());
+        // }
+        // }
+
+        for (int idx = 0; idx < ary.length; idx++) {
             PersonDTO per = ary[idx];
             System.out.println(per.personInfo());
+        }
+
+        // 8월 14일 실습 코드 시작
+        System.out.println();
+        System.out.println();
+        System.out.println("debug >>>> 매개변수의 다형성");
+        System.out.println();
+
+        OopService service = new OopService();
+        // service.setAry(stu);
+        // service.setAry(tea);
+        // service.setAry(manager);
+
+        service.makePerson(Flag.STUDENT, "나유성", 25, "서울", "2026");
+        service.makePerson(Flag.TEACHER, "임정섭", 40, "서울", "java");
+        service.makePerson(Flag.MANAGER, "김혜림", 30, "서울", "교육팀");
+
+        System.out.println();
+        System.out.println("debug >>>> 정보출력");
+        PersonDTO[] result = service.getAry();
+        for (PersonDTO person : result) {
+            if (person == null) {
+                break;
+            }
+            System.out.println(person.personInfo());
+        }
+
+        System.out.println();
+        System.out.println("debug >>>> findPerson");
+        PersonDTO find = service.findPerson("임정섭");
+        if(find != null){
+            System.out.println(find.personInfo());
+        }else{
+            System.out.println(">>>> Not Found!");
         }
     }
 }
