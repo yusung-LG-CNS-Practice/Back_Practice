@@ -93,14 +93,16 @@ public class CollectionApp {
         // 컬렉션을 Stream 객체로 바인딩하고 - 중간연산(0~N) - 연산결과를 최종연산(1개의 연산)
         // System.out::println
         // s -> s.startsWith()
-        // List<String> filteringList = personList.stream()
-        //         .filter(s -> s.getName().startsWith("j"))
-        //         .map(s -> s.getName().toUpperCase())
-        //         // .map(s -> getName()::toUpperCase())
-        //         .collect(Collectors.toList());
+        List<String> filteringList = personList.stream()
+                .filter(s -> s.getName().startsWith("j"))
+                .map(s -> s.getName().toUpperCase())
+                // .map(s -> getName()::toUpperCase())
+                .collect(Collectors.toList());
 
-        // System.out.println(filteringList);
+        System.out.println(filteringList);
 
-        personList.stream().filter(person -> person.getName().length() > 5).forEach(System.out::println);
+        System.out.println("debug >>>> stream");
+        // personList.stream().filter(person -> person.getName().length() > 5).forEach(System.out::println);
+        personList.stream().filter(person -> person.getName().length() > 5).forEach(person -> System.out.println(person.personInfo()));
     }
 }

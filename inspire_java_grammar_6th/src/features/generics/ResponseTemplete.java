@@ -1,5 +1,7 @@
 package features.generics;
 
+// 8월 18일 실습 코드
+
 public class ResponseTemplete<T> {
 
     private int code;
@@ -38,8 +40,4 @@ public class ResponseTemplete<T> {
     public void setData(T data) {
         this.data = data;
     }
-
-    
-
-
 }
