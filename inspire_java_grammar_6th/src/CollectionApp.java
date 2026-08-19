@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import features.oop.sub.ManagerDTO;
@@ -17,6 +21,7 @@ public class CollectionApp {
      * - Set(중복허용 x, 순서존재 x, 요소의 타입으로 객체만, 가변길이)
      * - Map({key : value}, {key : value}, ....)
      * 
+     * Boxing, UnBoxing
      * Wrapper Class(Primitive type -> reference type, reperence type <- primitive
      * type)
      * - int -> Integer
@@ -32,6 +37,7 @@ public class CollectionApp {
 
     public static void main(String[] args) {
 
+        // List
         System.out.println("debug >>>> array");
         int[] intAry = { 1, 2, 3, 4, 5 };
         System.out.println(intAry.length);
@@ -102,7 +108,48 @@ public class CollectionApp {
         System.out.println(filteringList);
 
         System.out.println("debug >>>> stream");
-        // personList.stream().filter(person -> person.getName().length() > 5).forEach(System.out::println);
-        personList.stream().filter(person -> person.getName().length() > 5).forEach(person -> System.out.println(person.personInfo()));
+        // personList.stream().filter(person -> person.getName().length() >
+        // 5).forEach(System.out::println);
+        personList.stream().filter(person -> person.getName().length() > 5)
+                .forEach(person -> System.out.println(person.personInfo()));
+
+        // Set
+        System.out.println();
+        System.out.println("debug >>>> Set");
+
+        Set<String> set = new HashSet<>();
+        set.add("jslim");
+        set.add("inspire");
+        set.add("lgcns");
+        set.add("jslim");
+        System.out.println(set);
+
+        Object[] setAry = set.toArray();
+
+        for (Object data : setAry) {
+            System.out.println(data);
+        }
+
+        // Map
+        System.out.println();
+        System.out.println("debug >>>> Map(key : value) === Json");
+
+        List<StudentDTO> studentList = new ArrayList<StudentDTO>();
+        List<TeacherDTO> teacherList = new ArrayList<TeacherDTO>();
+        List<ManagerDTO> managerList = new ArrayList<ManagerDTO>();
+        Map<String, List<? extends PersonDTO>> map = new HashMap<>();
+
+        map.put("student", studentList);
+        map.put("teacher", teacherList);
+        map.put("manager", managerList);
+
+        // List<? extends PersonDTO> mapList = map.get("manager");
+        // mapList.forEach(person -> System.out.println(person.personInfo()));
+
+        // map.get("student")
+        //         .stream()
+        //         .filter(null)
+        //         .map(null)
+        //         .forEach(person -> System.out.println(person.personInfo()));
     }
 }
