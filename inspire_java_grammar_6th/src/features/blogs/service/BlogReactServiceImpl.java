@@ -1,6 +1,7 @@
 package features.blogs.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import features.blogs.domain.dto.BlogRequestDTO;
 import features.blogs.domain.dto.BlogResponseDTO;
@@ -11,11 +12,11 @@ public class BlogReactServiceImpl implements BlogReactService {
 
     private BlogReactDao dao;
 
-    public BlogReactServiceImpl(){
+    public BlogReactServiceImpl() {
 
     }
 
-    public BlogReactServiceImpl(BlogReactDao dao){
+    public BlogReactServiceImpl(BlogReactDao dao) {
         this.dao = dao;
     }
 
@@ -29,8 +30,26 @@ public class BlogReactServiceImpl implements BlogReactService {
 
     @Override
     public BlogResponseDTO read(int blogId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'read'");
+        System.out.println("debug >>>> blog service read params : " + blogId);
+        // Q4-2번) dao findById() 메서드 호출을 통해서 전달된 Optional을 확인하고 객체 또는 null 반환하는 구현
+        // 내가 한 코드
+        // Optional<BlogResponseDTO> result = dao.findById(blogId);
+
+        // return result.orElse(null);
+
+        // 강사님이 한 코드
+        // case 1
+        // return dao.findById(blogId).orElse(null);
+        
+        // case 2
+        // Optional<BlogResponseDTO> result = dao.findById(blogId);
+        // if(result.isPresent()){
+        //     return result.get();
+        // }
+        // return null;
+
+        // case 3
+        return dao.findById(blogId).orElseThrow(() -> new RuntimeException(blogId + "정보를 찾을 수 없습니다."));
     }
 
     @Override
@@ -53,8 +72,9 @@ public class BlogReactServiceImpl implements BlogReactService {
 
     @Override
     public List<BlogResponseDTO> search(BlogRequestDTO request) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'search'");
+        System.out.println("debug >>>> blog service search params : " + request);
+
+        return dao.findByKeyword(request);
     }
 
 }

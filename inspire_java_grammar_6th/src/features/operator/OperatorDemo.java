@@ -34,14 +34,14 @@ public class OperatorDemo {
         }
     }
 
-    // 이렇게도 가능함
-    public BlogResponseDTO register(BlogRequestDTO request) {
-        if (request.getEmail() == "yusung052077@gmail.com") {
-            return new BlogResponseDTO(201, "OK");
-        } else {
-            return new BlogResponseDTO(400, "FAIL");
-        }
-    }
+    // // 이렇게도 가능함
+    // public BlogResponseDTO register(BlogRequestDTO request) {
+    //     if (request.getEmail() == "yusung052077@gmail.com") {
+    //         return new BlogResponseDTO(201, "OK");
+    //     } else {
+    //         return new BlogResponseDTO(400, "FAIL");
+    //     }
+    // }
 
     /*
      * Q1번)

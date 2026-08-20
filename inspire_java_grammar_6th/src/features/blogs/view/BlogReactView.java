@@ -1,6 +1,7 @@
 package features.blogs.view;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 import features.blogs.domain.dto.BlogResponseDTO;
@@ -85,6 +86,15 @@ public class BlogReactView {
                     case 1:
                         list();
                         break;
+                    case 2:
+                        read();
+                        break;
+                    case 3:
+                        insert();
+                        break;
+                    case 6:
+                        search();
+                        break;
                     case 99:
                         exit();
                         break;
@@ -93,8 +103,8 @@ public class BlogReactView {
                         break;
                 }
             } catch (NumberFormatException e) {
-                // TODO: handle exception
-                System.out.println("숫자만 입력해주세요.");
+                e.printStackTrace();
+                // System.out.println("숫자만 입력해주세요.");
             }
         }
     }
@@ -113,7 +123,58 @@ public class BlogReactView {
 
         // stream api 출력 == json rendering (react)
         response.stream()
-            // .forEach(person -> System.out.println(person));
-            .forEach(System.out::println);
+                // .forEach(person -> System.out.println(person));
+                .forEach(System.out::println);
+
+    }
+
+    public void read() {
+        System.out.println();
+        System.out.println(">>>> 상세페이지 정보");
+        String endPoint = "read.inspire";
+        System.out.print("키(blogId) 입력 : ");
+
+        int blogId = Integer.parseInt(scan.nextLine());
+        BlogResponseDTO response = front.read(endPoint, blogId);
+        System.out.println((response != null) ? response : "정보없음");
+    }
+
+    public void search() {
+        System.out.println();
+        System.out.println(">>>> 검색페이지 정보");
+        String endPoint = "search.inspire";
+
+        /*
+         * Q5) blog content 내용중 해당 키워드를 포함하는 것들을 검색해서 가져와 본다면?
+         * - front controller search() 정의
+         * - SearchController 클래스를 정의하고 factory에 search.inspire 등록
+         * - BlogReactServiceImpl 클래스에 search() 메서드 정의하고 dao findByKeyword() 메서드 호출
+         * - BlogReactDao 클래스에 findByKeyword() 구현
+         */
+
+        System.out.print("키워드 입력 : ");
+        String keyword = scan.nextLine();
+
+        List<BlogResponseDTO> response = front.search(endPoint, keyword);
+        response.stream().forEach(System.out::println);
+
+    }
+
+    public void insert() {
+        System.out.println();
+        System.out.println(">>>> 데이터 입력 화면.");
+        String endPoint = "insert.inspire";
+
+        // react data = {title : xxxx, content : xxxx, email : xxxx}
+        System.out.println("제목 : ");
+        String title = scan.nextLine();
+        System.out.println("내용 : ");
+        String content = scan.nextLine();
+        System.out.println("이메일 : ");
+        String email = scan.nextLine();
+
+        // axios.post("insert.inspire", data)
+        int flag = front.insert(endPoint, title, content, email);
+        System.out.println((flag == 1) ? "입력성공" : "입력 실패");
     }
 }

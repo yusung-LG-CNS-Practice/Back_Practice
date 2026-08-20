@@ -27,10 +27,10 @@ public class BlogResponseDTO {
     // public BlogResponseDTO() {
     // }
 
-    // public BlogResponseDTO(int status, String message) {
-    //     this.status = status;
-    //     this.message = message;
-    // }
+    public BlogResponseDTO(int status, String message) {
+        this.status = status;
+        this.message = message;
+    }
 
     // public int getStatus() {
     //     return status;
