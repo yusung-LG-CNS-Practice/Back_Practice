@@ -1,6 +1,7 @@
 package features.blogs.repository;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,11 +51,52 @@ public class BlogReactDao {
                 .toList();
     }
 
-    public int save(BlogRequestDTO request){
+    public int save(BlogRequestDTO request) {
         System.out.println("debug >>>> blog dao save params : " + request);
 
-        // blogs.add(request)
+        /*
+         * blogId stream을 이용한 generator
+         * hint)
+         * Q1번) blogId = stream sorted blogId reserved + 1
+         */
 
-        return 0;
+        int blogId = blogs.stream()
+                .map(BlogResponseDTO::getBlogId)
+                .sorted(Comparator.reverseOrder())
+                .findFirst()
+                .orElse(0) + 1;
+
+        BlogResponseDTO response = BlogRequestDTO.toEntity(request);
+        response.setBlogId(blogId); 
+        
+        blogs.add(response);
+
+        return 1;
+    }
+
+    public int delete(int blogId) {
+
+        System.out.println("debug >>>> blog dao delete params : " + blogId);
+        boolean isFlag = blogs.removeIf(blog -> blog.getBlogId() == blogId);
+
+        return (isFlag) ? 1 : 0;
+    }
+
+    public int update(BlogRequestDTO request) {
+
+        System.out.println("debug >>>> blog dao update params : " + request);
+
+        // Q) SQL : update title = request.getTitle(), content = request.getContent()
+        // where blogId + request.getBlogId()
+
+        return blogs.stream()
+                .filter(blog -> blog.getBlogId() == request.getBlogId())
+                .findAny()
+                .map(blog -> {
+                    blog.setTitle(request.getTitle());
+                    blog.setContent(request.getContent());
+                    return 1;
+                })
+                .orElse(0);
     }
 }

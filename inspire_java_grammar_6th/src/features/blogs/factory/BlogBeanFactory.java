@@ -3,10 +3,12 @@ package features.blogs.factory;
 import java.util.HashMap;
 import java.util.Map;
 
+import features.blogs.controller.DeleteController;
 import features.blogs.controller.InsertController;
 import features.blogs.controller.ListController;
 import features.blogs.controller.ReadController;
 import features.blogs.controller.SearchController;
+import features.blogs.controller.UpdateController;
 import features.blogs.repository.BlogReactDao;
 import features.blogs.service.BlogReactService;
 import features.blogs.service.BlogReactServiceImpl;
@@ -50,6 +52,10 @@ public class BlogBeanFactory {
         map.put("search.inspire", new SearchController(service));
 
         map.put("insert.inspire", new InsertController(service));
+
+        map.put("delete.inspire", new DeleteController(service));
+
+        map.put("update.inspire", new UpdateController(service));
     }
 
     public static BlogBeanFactory getInstance() {

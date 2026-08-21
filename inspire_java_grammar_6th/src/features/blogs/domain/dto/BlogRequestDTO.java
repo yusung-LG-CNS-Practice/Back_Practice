@@ -14,7 +14,7 @@ import lombok.ToString;
 @Getter
 @ToString
 public class BlogRequestDTO {
-    private int id;
+    private int blogId;
     private String title;
     private String content;
     private String email;
