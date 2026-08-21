@@ -3,6 +3,7 @@ package features.blogs.facade;
 import java.util.List;
 
 import features.blogs.controller.DeleteController;
+import features.blogs.controller.FileController;
 import features.blogs.controller.InsertController;
 import features.blogs.controller.ListController;
 import features.blogs.controller.ReadController;
@@ -73,5 +74,18 @@ public class BlogFrontController {
         Object controller = factory.getBean(endPoint);
 
         return ((UpdateController) controller).update(blogId, title, content);
+    }
+
+        public boolean file(String endPoint, String action) {
+
+        System.out.println("debug >>>> front controller endPoint : " + endPoint + " action : " + action);
+
+        FileController controller = (FileController)factory.getBean(endPoint);
+
+        if(action.equals("save")){
+            return controller.save();
+        }else{
+            return controller.load();
+        }
     }
 }

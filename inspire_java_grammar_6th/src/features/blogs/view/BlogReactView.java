@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import features.blogs.domain.dto.BlogResponseDTO;
 import features.blogs.facade.BlogFrontController;
+import features.blogs.util.ResponseEntity;
 
 // 8월 19일 실습 코드
 public class BlogReactView {
@@ -25,6 +26,9 @@ public class BlogReactView {
     }
 
     public void landingPage() {
+
+        boolean isLoad = front.file("file.inspire", "load");
+        System.out.println(isLoad ? "데이터 로드 완료" : "데이터 로드 실패");
 
         while (true) {
             System.out.println();
@@ -117,7 +121,13 @@ public class BlogReactView {
 
     public void exit() {
         System.out.println();
-        System.out.println(">>>> 시스템을 종료합니다.");
+        System.out.println(">>>> 작업된 내용을 저장하고 시스템을 종료하시겠습니까(y/n)");
+        String yesOrNo = scan.nextLine();
+        if(yesOrNo.equalsIgnoreCase("y")){
+            String endPoint = "file.inspire";
+            System.out.println(front.file(endPoint, "save") ? "데이터 저장 완료!" : "데이터 저장 실패");
+            System.exit(1);
+        }
         System.exit(1);
     }
 
@@ -125,12 +135,15 @@ public class BlogReactView {
         System.out.println();
         System.out.println(">>>> 데이터 출력");
         String endPoint = "list.inspire";
-        List<BlogResponseDTO> response = front.list(endPoint);
+        ResponseEntity<List<BlogResponseDTO>> response = front.list(endPoint);
 
         // stream api 출력 == json rendering (react)
-        response.stream()
-                // .forEach(person -> System.out.println(person));
-                .forEach(System.out::println);
+        if(response.getCode() == 200){
+            response.getData().stream().forEach(System.out::println);
+        }
+        // response.getData().stream()
+        //         // .forEach(person -> System.out.println(person));
+        //         .forEach(System.out::println);
 
     }
 

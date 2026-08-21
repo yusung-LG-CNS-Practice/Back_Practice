@@ -4,7 +4,7 @@ import features.blogs.service.BlogReactService;
 
 public class DeleteController {
 
-        private BlogReactService service;
+    private BlogReactService service;
 
     public DeleteController(){
 
@@ -17,7 +17,7 @@ public class DeleteController {
     public int delete(int blogId){
 
         System.out.println("debug >>>> delete controller delete params : " + blogId);
-        
+
         return service.delete(blogId);
     }
 }

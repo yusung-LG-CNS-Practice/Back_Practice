@@ -4,6 +4,7 @@ import java.util.List;
 
 import features.blogs.domain.dto.BlogResponseDTO;
 import features.blogs.service.BlogReactService;
+import features.blogs.util.ResponseEntity;
 
 // 8월 19일 실습 코드
 public class ListController {
@@ -19,8 +20,8 @@ public class ListController {
     }
 
     // view에게 응답하는 역할의 메서드
-    public List<BlogResponseDTO> list(){
+    public ResponseEntity<List<BlogResponseDTO>> list(){
         System.out.println("debug >>>> list controller list()");
-        return service.list();
+        return new ResponseEntity<List<BlogResponseDTO>>(200, "ok", service.list());
     }
 }

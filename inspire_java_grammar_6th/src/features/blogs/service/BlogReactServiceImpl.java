@@ -1,5 +1,10 @@
 package features.blogs.service;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,11 +46,11 @@ public class BlogReactServiceImpl implements BlogReactService {
         // 강사님이 한 코드
         // case 1
         // return dao.findById(blogId).orElse(null);
-        
+
         // case 2
         // Optional<BlogResponseDTO> result = dao.findById(blogId);
         // if(result.isPresent()){
-        //     return result.get();
+        // return result.get();
         // }
         // return null;
 
@@ -64,7 +69,7 @@ public class BlogReactServiceImpl implements BlogReactService {
     @Override
     public int update(BlogRequestDTO request) {
         System.out.println("debug >>>> blog serive update params : " + request);
-        
+
         return dao.update(request);
     }
 
@@ -82,6 +87,36 @@ public class BlogReactServiceImpl implements BlogReactService {
         System.out.println("debug >>>> blog service search params : " + request);
 
         return dao.findByKeyword(request);
+    }
+
+    @Override
+    public boolean saveToFile() {
+        System.out.println("debug >>>> blog service search params : ");
+        String path = "./object.txt";
+
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File(path)))) {
+            oos.writeObject(dao.findByAll());
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public boolean loadToFile() {
+        System.out.println("debug >>>> blog service search params : ");
+
+        System.out.println("debug >>>> blog service search params : ");
+        String path = "./object.txt";
+
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(path)))) {
+            dao.setBlogs((List<BlogResponseDTO>) ois.readObject());
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
 }

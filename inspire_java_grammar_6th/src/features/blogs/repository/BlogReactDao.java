@@ -21,6 +21,11 @@ public class BlogReactDao {
                 BlogResponseDTO.builder().BlogId(5).title("msa").content("kafka").email("lim").viewCnt(50).build()));
     }
 
+    // 참조 복사(deep copy)
+    public void setBlogs(List<BlogResponseDTO> blogs) {
+        this.blogs = blogs;
+    }
+
     public List<BlogResponseDTO> findByAll() {
         System.out.println("debug >>>> blog dao findByAll()");
         return blogs;
@@ -67,8 +72,8 @@ public class BlogReactDao {
                 .orElse(0) + 1;
 
         BlogResponseDTO response = BlogRequestDTO.toEntity(request);
-        response.setBlogId(blogId); 
-        
+        response.setBlogId(blogId);
+
         blogs.add(response);
 
         return 1;

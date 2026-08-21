@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import features.blogs.controller.DeleteController;
+import features.blogs.controller.FileController;
 import features.blogs.controller.InsertController;
 import features.blogs.controller.ListController;
 import features.blogs.controller.ReadController;
@@ -56,6 +57,8 @@ public class BlogBeanFactory {
         map.put("delete.inspire", new DeleteController(service));
 
         map.put("update.inspire", new UpdateController(service));
+
+        map.put("file.inspire", new FileController(service));
     }
 
     public static BlogBeanFactory getInstance() {

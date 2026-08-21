@@ -1,41 +1,116 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 
+import features.blogs.domain.dto.BlogResponseDTO;
+import features.blogs.repository.BlogReactDao;
 
 public class IOStreamApp {
 
     public static void main(String[] args) {
-        System.out.println("debug >>>> io stream 이용한 데이터 입출력 : ");
+        // System.out.println("debug >>>> io stream 이용한 데이터 입출력 : ");
         // try{
-        //     int input = System.in.read();
-        //     System.out.println((char)input);
+        // int input = System.in.read();
+        // System.out.println((char)input);
         // }catch(IOException e){
-        //     e.printStackTrace();
+        // e.printStackTrace();
         // }
 
-        System.out.println("debug >>>> io stream 이용한 데이터 입출력 char : ");
+        // System.out.println("debug >>>> io stream 이용한 데이터 입출력 char : ");
 
         // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         // try{
-        //     String input = br.readLine();
-        //     System.out.println(input);
+        // String input = br.readLine();
+        // System.out.println(input);
         // }catch(Exception e){
-        //     e.printStackTrace();
+        // e.printStackTrace();
         // }finally{
-        //     try{
-        //         if(br != null){
-        //             br.close();
-        //         }
-        //     }catch(Exception e){
-        //         e.printStackTrace();
-        //     }
+        // try{
+        // if(br != null){
+        // br.close();
+        // }
+        // }catch(Exception e){
+        // e.printStackTrace();
+        // }
         // }
 
-        System.out.println("debug >>>> autocloseable : ");
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in));){
-            System.out.println(br.readLine());
+        // System.out.println("debug >>>> autocloseable : ");
+
+        // try (BufferedReader br = new BufferedReader(new
+        // InputStreamReader(System.in));){
+        // System.out.println(br.readLine());
+        // } catch (Exception e) {
+        // e.printStackTrace();
+        // }
+
+        // InputStream -> InputStreamReader, FileInputStream -> FileInputStreamReader,
+        // BufferReader(FileReader(file()));
+        // System.out.println("debug >>>> file input / output : ");
+
+        // String path = "./text.txt";
+
+        // try (BufferedReader br = new BufferedReader(new FileReader(new File(path),
+        // StandardCharsets.UTF_8))){
+
+        // String input = null;
+
+        // while ((input = br.readLine()) != null) {
+        // System.out.println(input);
+        // }
+        // } catch (Exception e) {
+        // e.printStackTrace();
+        // }
+
+        // System.out.println("debug >>>> file input / output : ");
+
+        // String path = "./text.txt";
+
+        // try (BufferedWriter bw = new BufferedWriter(new FileWriter(new File(path),
+        // StandardCharsets.UTF_8))) {
+        // bw.write("메시지\n");
+        // } catch (Exception e) {
+        // e.printStackTrace();
+        // }
+
+
+        List<BlogResponseDTO> blogs = new ArrayList<>(List.of(
+                BlogResponseDTO.builder().BlogId(1).title("react").content("state").email("Na").viewCnt(10).build(),
+                BlogResponseDTO.builder().BlogId(2).title("java").content("oop").email("kim").viewCnt(20).build(),
+                BlogResponseDTO.builder().BlogId(3).title("spring").content("mybatis").email("lee").viewCnt(30).build(),
+                BlogResponseDTO.builder().BlogId(4).title("docker").content("devops").email("park").viewCnt(40).build(),
+                BlogResponseDTO.builder().BlogId(5).title("msa").content("kafka").email("lim").viewCnt(50).build()));
+
+        System.out.println("debug >>>> ArrayList<BlogResponseDTO> Serializable ");
+
+        // String path = "./object.txt";
+        // try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new
+        // File(path)))) {
+        // oos.writeObject(blogs);
+        // System.out.println("debug >>>> object.txt save ok ");
+        // } catch (Exception e) {
+        // e.printStackTrace();
+        // }
+
+        String path = "./object.txt";
+
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(path)))) {
+
+            List<BlogResponseDTO> list = (List<BlogResponseDTO>) ois.readObject();
+
+            list.forEach(System.out::println);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
